@@ -1,3 +1,13 @@
+# Qwertickle fork notes
+Forked from https://github.com/aitjcize/Qwertickle
+
+This fork substitutes the typewriter sound scheme with a keyboard sound scheme. Better sounds are still wanted :)
+
+Also this version handles both KeyPress and KeyRelease events.
+
+Current sounds are stolen (an sliced afterwards) from similar project: https://github.com/colszowka/linux-typewriter
+which states that the sounds extracted from 'keyboard-typing' by Anton at Freesound, www.freesound.org/samplesViewSingle.php?id=137
+
 # Qwertickle
 A typewriter sound scheme for your keyboard!
 
