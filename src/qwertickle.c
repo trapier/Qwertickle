@@ -33,10 +33,10 @@
 #include "qwertickle.h"
 
 const gchar* uris[] = {
-  "file://"DATADIR"/typewriter-key.mp3",
-  "file://"DATADIR"/typewriter-return.mp3",
-  "file://"DATADIR"/typewriter-space-bar.mp3",
-  "file://"DATADIR"/typewriter-backspace.mp3"
+  "file://"DATADIR"/key-down.mp3",
+  "file://"DATADIR"/key-up.mp3",
+  "file://"DATADIR"/big-key-down.mp3",
+  "file://"DATADIR"/big-key-up.mp3"
 };
 
 /* global variables */
@@ -213,19 +213,30 @@ void key_pressed_cb(XPointer arg, XRecordInterceptData *d) {
   if (d->category != XRecordFromServer) return;
   unsigned char type = ((unsigned char*)d->data)[0] & 0x7F;
   unsigned char detail = ((unsigned char*)d->data)[1];
-  if (type == KeyPress) {
-    switch (detail) {
-      case 36:
-        uri = 1;
-        break;
-      case 65:
-        uri = 2;
-        break;
-      case 22:
-        uri = 3;
-        break;
-      default:
-        uri = 0;
+  //fprintf(stderr, "Type: %d\n", type);
+  //fprintf(stderr, "Detail: %d\n", detail);
+  if (type == KeyPress || type == KeyRelease) {
+    if (type == KeyPress) {
+        switch (detail) {
+          case 36: // Enter
+          case 65: // Space
+          //case 22: // Backspace
+            uri = 2;
+            break;
+          default:
+            uri = 0;
+        }
+    }
+    else {
+        switch (detail) {
+          case 36: // Enter
+          case 65: // Space
+          //case 22: // Backspace
+            uri = 3;
+            break;
+          default:
+            uri = 1;
+        }
     }
     g_signal_emit_by_name(arg, "activate");
   }
