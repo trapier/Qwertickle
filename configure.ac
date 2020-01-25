@@ -21,8 +21,8 @@ AM_PATH_GTK_2_0([2.16.0], [
 	 GUI_LIBS="$GUI_LIBS $GTK_LIBS"
 	], [AC_MSG_ERROR([You need Gtk+ >= 2.16.0 to build $PACKAGE])]) 
 
-PKG_CHECK_MODULES(GST, [gstreamer-0.10],,
-	[AC_MSG_ERROR([You need libgstreamer0.10 to build $PACKAGE])]) 
+PKG_CHECK_MODULES(GST, [gstreamer-1.0],,
+	[AC_MSG_ERROR([You need libgstreamer-1.0 to build $PACKAGE])])
 GUI_CFLAGS="$GUI_CFLAGS $GST_CFLAGS"
 GUI_LIBS="$GUI_LIBS $GST_LIBS"
 
